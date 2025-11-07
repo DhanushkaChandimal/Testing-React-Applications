@@ -19,4 +19,9 @@ describe('ButtonAPICall Component', () => {
       expect(axios.get).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/todos');
     });
   });
+
+  test('matches the snapshot', () => {
+    const { asFragment } = render(<ButtonAPICall />);
+    expect(asFragment()).toMatchSnapshot();
+  });
 });
