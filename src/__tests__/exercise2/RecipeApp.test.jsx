@@ -18,4 +18,12 @@ describe('RecipeApp component', () => {
         expect(queryByText(/Chicken Parmesan/i)).toBeInTheDocument();
         expect(queryByText(/Spaghetti Carbonara/i)).not.toBeInTheDocument();
     });
+
+    test('case insensitivity', () => {
+        const { getByPlaceholderText, queryByText } = render(<RecipeApp/>);
+        fireEvent.change(getByPlaceholderText(/Search recipes.../i), {target: {value: 'ChiCKen'}});
+        expect(queryByText(/Chicken Tikka Masala/i)).toBeInTheDocument();
+        expect(queryByText(/Chicken Parmesan/i)).toBeInTheDocument();
+        expect(queryByText(/Spaghetti Carbonara/i)).not.toBeInTheDocument();
+    });
 });
